@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Mood Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>How are you feeling today?</h1>
+        <div class="mood-buttons">
+            <button class="mood" data-mood="happy" onclick="changeMood('happy')">😊<br>Happy</button>
+            <button class="mood" data-mood="sad" onclick="changeMood('sad')">😢<br>Sad</button>
+            <button class="mood" data-mood="excited" onclick="changeMood('excited')">🤩<br>Excited</button>
+            <button class="mood" data-mood="calm" onclick="changeMood('calm')">😌<br>Calm</button>
+        </div>
+        <div class="mood-history">
+            <h2>Mood History</h2>
+            <ul id="history-list"></ul>
+        </div>
+        <div class="theme-toggle">
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
+                <span class="slider round"></span>
+            </label>
+            <p>Dark Mode</p>
+        </div>
+    </div>
+    <script>
+        function changeMood(mood) {
+            const moodColors = {
+                happy: 'yellow',
+                sad: 'blue',
+                excited: 'red',
+                calm: 'green'
+            };
+            document.body.style.backgroundColor = moodColors[mood];
+            addMoodToHistory(mood);
+        }
+
+        function addMoodToHistory(mood) {
+            const historyList = document.getElementById('history-list');
+            const newMood = document.createElement('li');
+            newMood.textContent = mood.charAt(0).toUpperCase() + mood.slice(1);
+            historyList.appendChild(newMood);
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
